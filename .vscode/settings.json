@@ -1,5 +1,5 @@
 {
-  "python.pythonPath": "/Users/robusgauli/Desktop/flask-starter/venv/bin",
+  "python.pythonPath": "${workspaceFolder}/venv/bin/python",
   "editor.tabSize": 4,
   "python.linting.pylintEnabled": true,
   "python.linting.enabled": true
