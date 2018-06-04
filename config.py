@@ -3,8 +3,9 @@ import os
 
 from lib import ConfigBase
 
+
 class Config(ConfigBase):
-    DEBUG = False 
+    DEBUG = False
     TESTING = False
     SECRET_KEY = os.getenv(
         'SECRET_KEY',
@@ -21,11 +22,12 @@ class TestingConfig(Config):
 
     DEBUG = True
     TESTING = True
-    SECRET_KEY='testing secret key'
+    SECRET_KEY = 'testing secret key'
     DATABASE_URL = os.getenv(
         'TEST_DATABASE_URL',
         'sqlite:///'
     )
+
 
 class DevelopmentConfig(Config):
     __name__ = 'development'
@@ -35,6 +37,7 @@ class DevelopmentConfig(Config):
         'DEV_DATABASE_URL',
         'sqlite:///path/to/dev/database'
     )
+
 
 class ProductionConfig(Config):
     __name__ = 'production'
@@ -46,7 +49,9 @@ class ProductionConfig(Config):
         'postgres://path/to/prod/database'
     )
 
+
 class UnixConfig(ProductionConfig):
     __name__ = 'unix'
-    
+
+
 config = ConfigBase.create_config()
