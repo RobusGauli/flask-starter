@@ -6,5 +6,5 @@ from app.api import api_blueprint as api
 @api.route('/users', methods=['GET'])
 def get_users():
 	return jsonify({
-		name: 'test_user'
+		'name': 'test_user'
 	})
