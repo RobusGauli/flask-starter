@@ -3,12 +3,15 @@
     Loading environment variables for application.
 """
 import os
-import sys
+
 
 from dotenv import load_dotenv
 
 
 def initialize_env():
+    """
+        Initializes environment variables required by flask app.
+    """
     env_dir_path = os.path.abspath(os.path.curdir)
     env_path = os.path.join(env_dir_path, '.env')
     if not os.path.exists(env_path):

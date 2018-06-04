@@ -6,12 +6,17 @@
     to flask app instance
 """
 
+
 def register_cmd():
-    """Registration function that returns decorator function for registration"""
+    """
+        Registration function that returns decorator function for registration
+    """
     commands = []
+
     def deco(func):
         """Decorator function that simply registers func to commands list"""
         commands.append(func)
+
         def wrapper(*args, **kwargs):
             return func(*args, **kwargs)
         return wrapper
@@ -22,5 +27,6 @@ def register_cmd():
             app.cli.add_command(func)
     deco.init = init
     return deco
+
 
 __all__ = ['register_cmd']
