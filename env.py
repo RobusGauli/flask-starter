@@ -7,6 +7,7 @@ import sys
 
 from dotenv import load_dotenv
 
+
 def initialize_env():
     env_dir_path = os.path.abspath(os.path.curdir)
     env_path = os.path.join(env_dir_path, '.env')

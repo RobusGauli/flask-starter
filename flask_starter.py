@@ -13,5 +13,3 @@ flask_environment = os.getenv(
 )
 app = create_app(flask_environment)
 cli.register(app)
-
-
