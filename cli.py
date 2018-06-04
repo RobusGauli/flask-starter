@@ -19,7 +19,6 @@ def autopep_command():
     autopep = subprocess.call(
         'python -m autopep8 --in-place -r app/'.split()
     )
-    print(autopep)
     if autopep:
         click.echo('Autopep8 is successfully applied.')
 
