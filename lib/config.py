@@ -8,7 +8,7 @@ class ConfigMetaType(type):
         if '__name__' in clsdict:
             cls._config_registry[clsdict['__name__']] = _class_instance
         return _class_instance
-    
+
     @classmethod
     def create_config(cls):
         return cls._config_registry

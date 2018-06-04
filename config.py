@@ -4,7 +4,7 @@ import os
 from lib import ConfigBase
 
 class Config(ConfigBase):
-    DEBUG = False 
+    DEBUG = False
     TESTING = False
     SECRET_KEY = os.getenv(
         'SECRET_KEY',
@@ -48,5 +48,5 @@ class ProductionConfig(Config):
 
 class UnixConfig(ProductionConfig):
     __name__ = 'unix'
-    
+
 config = ConfigBase.create_config()
