@@ -1,5 +1,6 @@
 from collections import defaultdict
 
+
 class ConfigMetaType(type):
     _config_registry = defaultdict(dict)
 
@@ -13,7 +14,9 @@ class ConfigMetaType(type):
     def create_config(cls):
         return cls._config_registry
 
+
 class ConfigBase(metaclass=ConfigMetaType):
     pass
+
 
 __all__ = ['ConfigBase']
