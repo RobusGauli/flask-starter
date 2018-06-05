@@ -8,6 +8,7 @@
         $ flask lint
         $ flask autopep
 """
+import sys
 import subprocess
 
 import click
@@ -25,14 +26,27 @@ def lint_command():
 
 
 @reg_command
-@click.command('autopep', help='Conform your source code to PEP8.')
+@click.command('autopep', help='Confirm your source code to PEP8.')
 def autopep_command():
     """Runs auto-formatting to your source files PEP8"""
     autopep = subprocess.call(
         'python -m autopep8 --in-place -r app/'.split()
     )
-    if autopep:
-        click.echo('Autopep8 is successfully applied.')
+    sys.exit(autopep)
+
+
+@reg_command
+@click.command('clean-pyc', help='Remove python artifacts.')
+def clean_pyc_command():
+    """Removes python artifacts"""
+    s = subprocess.call(
+        "find . -name '*.pyc' -exec rm -f {} +".split()
+    )
+    print(s)
+    subprocess.call(
+        "find . -name '__pycache__' -exec rm -fr {} +".split()
+    )
+    print('done')
 
 
 def register(app):
