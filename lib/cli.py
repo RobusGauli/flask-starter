@@ -5,6 +5,7 @@
     and provides chained function to register commands
     to flask app instance
 """
+from functools import wraps
 
 
 def register_cmd():
@@ -17,6 +18,7 @@ def register_cmd():
         """Decorator function that simply registers func to commands list"""
         commands.append(func)
 
+        @wraps(func)
         def wrapper(*args, **kwargs):
             return func(*args, **kwargs)
         return wrapper
