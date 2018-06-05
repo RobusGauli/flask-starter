@@ -35,20 +35,6 @@ def autopep_command():
     sys.exit(autopep)
 
 
-@reg_command
-@click.command('clean-pyc', help='Remove python artifacts.')
-def clean_pyc_command():
-    """Removes python artifacts"""
-    s = subprocess.call(
-        "find . -name '*.pyc' -exec rm -f {} +".split()
-    )
-    print(s)
-    subprocess.call(
-        "find . -name '__pycache__' -exec rm -fr {} +".split()
-    )
-    print('done')
-
-
 def register(app):
     '''Registration of cli command to flask environment'''
     reg_command.init(app)
