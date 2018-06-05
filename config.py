@@ -64,7 +64,7 @@ class ProductionConfig(Config):
     SECRET_KEY = 'productionsecretkey'
     DEBUG = False
     DATABASE_URL = os.getenv(
-        'PROD_DATABSE_URL',
+        'PROD_DATABASE_URL',
         'postgres://path/to/prod/database'
     )
 
