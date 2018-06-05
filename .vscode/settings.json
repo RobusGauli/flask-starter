@@ -1,6 +1,10 @@
 {
   "python.pythonPath": "${workspaceFolder}/venv/bin/python",
   "editor.tabSize": 4,
-  "python.linting.pylintEnabled": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.pylintEnabled": false,
+  "python.linting.lintOnSave": true,
+  "python.formatting.provider": "autopep8",
+  "editor.formatOnSave": true,
   "python.linting.enabled": true
 }

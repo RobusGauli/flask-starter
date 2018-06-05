@@ -1,12 +1,16 @@
+# -*- coding: utf-8 -*-
 """
     lib
+    ~~~~~
+    This modules contains helper functions required by
+    configuration, cli, etc
 """
-# pylint: disable=undefined-variable
-# pylint: disable=wildcard-import
 
+# flake8: noqa
+# pylint: disable=wildcard-import
+# pylint: disable=undefined-variable
 from .config import *
 from .cli import *
-# pylint: disable=undefined-variable
 
 __all__ = (
     config.__all__ +

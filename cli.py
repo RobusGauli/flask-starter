@@ -1,21 +1,33 @@
 # -*- coding: utf-8 -*-
-import click
+"""
+    cli
+    ~~~~~
+    Flask command interface.
+    Usage:
+        $ flask --help
+        $ flask lint
+        $ flask autopep
+"""
 import subprocess
 
+import click
+
 from lib import register_cmd
+# pylint: disable=invalid-name
+reg_command = register_cmd()
 
-_register = register_cmd()
 
-
-@_register
+@reg_command
 @click.command('lint', help='Lint python app.')
 def lint_command():
+    """Runs pylint for your source files"""
     click.echo('linted successfully')
 
 
-@_register
+@reg_command
 @click.command('autopep', help='Conform your source code to PEP8.')
 def autopep_command():
+    """Runs auto-formatting to your source files PEP8"""
     autopep = subprocess.call(
         'python -m autopep8 --in-place -r app/'.split()
     )
@@ -25,4 +37,4 @@ def autopep_command():
 
 def register(app):
     '''Registration of cli command to flask environment'''
-    _register.init(app)
+    reg_command.init(app)

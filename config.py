@@ -1,10 +1,20 @@
 # -*- coding: utf-8 -*-
+# pylint: disable=too-few-public-methods
+"""
+    config
+    ~~~~~
+    Configuration values for different environments.
+"""
+
 import os
 
 from lib import ConfigBase
 
 
 class Config(ConfigBase):
+    """
+        Base Configuration.
+    """
     DEBUG = False
     TESTING = False
     SECRET_KEY = os.getenv(
@@ -18,6 +28,9 @@ class Config(ConfigBase):
 
 
 class TestingConfig(Config):
+    """
+        Test Environment Configuration
+    """
     __name__ = 'test'
 
     DEBUG = True
@@ -30,6 +43,9 @@ class TestingConfig(Config):
 
 
 class DevelopmentConfig(Config):
+    """
+        Development Environment Configuration
+    """
     __name__ = 'development'
 
     DEBUG = True
@@ -40,6 +56,9 @@ class DevelopmentConfig(Config):
 
 
 class ProductionConfig(Config):
+    """
+        Production Environment Configuration.
+    """
     __name__ = 'production'
 
     SECRET_KEY = 'productionsecretkey'
@@ -51,7 +70,11 @@ class ProductionConfig(Config):
 
 
 class UnixConfig(ProductionConfig):
+    """
+        Unix Environment Configuration.
+    """
     __name__ = 'unix'
 
 
+# pylint: disable=invalid-name
 config = ConfigBase.create_config()
