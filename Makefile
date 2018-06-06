@@ -10,19 +10,33 @@ export BROWSER_PYSCRIPT
 
 BROWSER := python -c "$$BROWSER_PYSCRIPT"
 
+define PRINT_HELP_PYSCRIPT
+import re, sys
+
+for line in sys.stdin:
+	match = re.match(r'^([a-zA-Z_-]+):.*?## (.*)$$', line)
+	if match:
+		target, help = match.groups()
+		print("%-20s %s" % (target, help))
+endef
+export PRINT_HELP_PYSCRIPT
+
+
 help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
-clean-pyc: ## remove Python file artifacts
+clean-pyc: ## Remove Python file artifacts
 	find . -name '*.pyc' -exec rm -f {} +
 	find . -name '*.pyo' -exec rm -f {} +
 	find . -name '*~' -exec rm -f {} +
 	find . -name '__pycache__' -exec rm -fr {} +
 
 
-test: ## run tests quickly with the default Python
+test: ## Run tests quickly with the default Python
 	py.test
 
-run: ## run flask app and open up the browser
-	$(BROWSER) http://localhost:5000/ 
-	flask run --host=localhost --port 5000
+run: ## Run flask app and open up the browser
+	FLASK_APP=flask-starter.py flask run
+	
+run-dev:
+	export NAME=robus
