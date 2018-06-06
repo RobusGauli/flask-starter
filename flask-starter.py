@@ -14,7 +14,7 @@ from app import create_app
 flask.cli.load_dotenv(path=os.path.join(os.path.curdir, '.env'))
 # pylint: disable=invalid-name
 flask_environment = os.getenv(
-    'FLASK_CONFIG',
+    'FLASK_ENV',
     'development'
 )
 app = create_app(flask_environment)
