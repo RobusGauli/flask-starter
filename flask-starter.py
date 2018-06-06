@@ -6,12 +6,12 @@
 """
 import os
 
+import flask
 import cli
 from app import create_app
-from env import initialize_env
 
 # initiliaze environment variables
-initialize_env()
+flask.cli.load_dotenv(path=os.path.join(os.path.curdir, '.env'))
 # pylint: disable=invalid-name
 flask_environment = os.getenv(
     'FLASK_CONFIG',
