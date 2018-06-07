@@ -6,5 +6,17 @@
   "python.linting.lintOnSave": true,
   "python.formatting.provider": "autopep8",
   "editor.formatOnSave": true,
-  "python.linting.enabled": true
+  "python.linting.enabled": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.pyc": true,
+    "**/__pycache__": true,
+    "**/.cache": true,
+    "**/.pytest": true,
+    "**/.pytest_cache": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true
+  }
 }
