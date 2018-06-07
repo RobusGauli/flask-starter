@@ -8,8 +8,10 @@ import os
 
 import flask
 import cli
-from app import create_app, db
+from app import create_app, Base
 from flask_migrate import Migrate
+from lib import FlaskSqlSession
+from sqlalchemy.orm import sessionmaker
 
 # initiliaze environment variables
 flask.cli.load_dotenv(path=os.path.join(os.path.curdir, '.env'))
@@ -19,5 +21,5 @@ flask_environment = os.getenv(
     'development'
 )
 app = create_app(flask_environment)
-migrate = Migrate(app, db)
+migrate = Migrate(app, Base)
 cli.register(app)

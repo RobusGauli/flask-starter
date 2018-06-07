@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String
 
-from .base import Base
+from . import Base
 
 
 class Department(Base):

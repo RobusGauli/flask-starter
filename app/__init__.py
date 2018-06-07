@@ -8,37 +8,15 @@
 from flask import Flask
 
 from config import config
+from lib import FlaskSqlSession
 
 from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
+
 from app.models import Base
-
-
-class Sqlalchemy:
-
-    def __init__(self, base):
-        self.base = base
-        self.db_url = None
-        self.engine = None
-
-    def create_engine(self, db_url):
-        self.db_url = db_url
-        self.engine = create_engine(self.db_url)
-        return self.engine
-
-    def migrate(self):
-        pass
-
-    def start(self):
-        self.base.metadata.create_all(self.engine)
-
-    @property
-    def metadata(self):
-        return self.base.metadata
-
-
-db = Sqlalchemy(Base)
+from lib.flask_sql_session import dbsession
 
 
 def create_app(flask_config='development'):
@@ -51,4 +29,14 @@ def create_app(flask_config='development'):
     from app.api import api_blueprint
     app.register_blueprint(api_blueprint, url_prefix='/api')
 
+    # create and session factory from the engine and attach
+    # it app instance as an attribute
+    engine = create_engine(app.config['DATABASE_URL'])
+    session_factory = sessionmaker(engine, autocommit=False, autoflush=False)
+
+    # proxy dbsession using flask_sql_session
+    FlaskSqlSession(session_factory, app)
     return app
+
+
+__all__ = ['create_app', 'Base', 'dbsession']
