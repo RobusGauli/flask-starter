@@ -11,6 +11,7 @@
 import sys
 import subprocess
 
+from flask.cli import with_appcontext
 import click
 
 from lib import register_cmd

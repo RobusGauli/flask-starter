@@ -33,16 +33,20 @@ class Sqlalchemy:
     def start(self):
         self.base.metadata.create_all(self.engine)
 
+    @property
+    def metadata(self):
+        return self.base.metadata
+
+
+db = Sqlalchemy(Base)
+
 
 def create_app(flask_config='development'):
     """Creates and returns app instance."""
     app = Flask(__name__)
 
     app.config.from_object(config[flask_config])
-    sqlalchemy = Sqlalchemy(Base)
-    sqlalchemy.create_engine(app.config['DATABASE_URL'])
-    sqlalchemy.start()
-    sqlalchemy.migrate()
+    print(app.config['ENV'])
     # Bluprints registration
     from app.api import api_blueprint
     app.register_blueprint(api_blueprint, url_prefix='/api')
