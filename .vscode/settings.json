@@ -1,5 +1,5 @@
 {
-  "python.pythonPath": "${workspaceFolder}/venv/bin/python",
+  "python.pythonPath": "/Users/robusgauli/anaconda3/bin/python",
   "editor.tabSize": 4,
   "python.linting.flake8Enabled": true,
   "python.linting.pylintEnabled": false,
